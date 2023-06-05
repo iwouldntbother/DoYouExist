@@ -1,0 +1,210 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  background-color: #2f3640;
+  color: #44bd32;
+  overflow: hidden;
+}
+
+body {
+  width: 100svw;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#mainTextArea {
+  max-width: 100svw;
+  max-height: 100svh;
+  font-size: 1em;
+  margin: 0;
+  white-space: pre;
+}
+
+#halfwayRule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50svw;
+  height: 100svh;
+  border: solid 0.1em red;
+  border-width: 0 0.1em 0 0;
+}
+
+#cmdInput {
+  margin: 0 0 0 0.25em;
+}
+
+.loading::after {
+  content: '';
+  display: inline-block;
+  animation: loading 1s step-end infinite;
+  -webkit-animation: 1s loading step-end infinite;
+}
+
+@keyframes loading {
+  from,
+  to {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
+
+@-webkit-keyframes loading {
+  from,
+  to {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
+
+.spinner::after {
+  content: '/';
+  display: inline-block;
+  animation: spinner 1s step-end infinite;
+  -webkit-animation: 1s spinner step-end infinite;
+}
+
+@keyframes spinner {
+  from,
+  to {
+    content: '/';
+  }
+  25% {
+    content: '-';
+  }
+  50% {
+    content: '\\';
+  }
+  75% {
+    content: '|';
+  }
+}
+
+@-webkit-keyframes spinner {
+  from,
+  to {
+    content: '/';
+  }
+  25% {
+    content: '-';
+  }
+  50% {
+    content: '\\';
+  }
+  75% {
+    content: '|';
+  }
+}
+
+.cursor::after {
+  content: '█';
+  display: inline-block;
+  animation: cursor-blink 1.5s step-end infinite;
+  -webkit-animation: 1s cursor-blink step-end infinite;
+}
+
+@keyframes cursor-blink {
+  from,
+  to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes cursor-blink {
+  from,
+  to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#square-0 {
+  width: 19.25em;
+  height: 16.2em;
+  top: 14.4em;
+  right: 20.75em;
+  position: absolute;
+  object-fit: contain;
+}
+
+#square-1 {
+  width: 19.4em;
+  height: 16.2em;
+  top: 14.4em;
+  right: 0.75em;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.print {
+  width: 4.8em;
+  height: 8.1em;
+  object-fit: cover;
+}
+
+#button-0 {
+  width: 39em;
+  height: 40.5em;
+  background-color: green;
+  opacity: 0.5;
+  position: absolute;
+  top: 14em;
+  left: 0.5em;
+  z-index: 10;
+}
+
+#button-1 {
+  width: 38.7em;
+  height: 40.5em;
+  background-color: red;
+  opacity: 0.5;
+  position: absolute;
+  top: 14em;
+  right: 0.5em;
+  z-index: 10;
+}
+
+.white {
+  color: white;
+}
+
+w {
+  color: white;
+}
+
+/* MAC DEV ONLY */
+
+#button-0,
+#button-1,
+#square-0,
+#square-1 {
+  background: transparent !important;
+  cursor: pointer;
+}

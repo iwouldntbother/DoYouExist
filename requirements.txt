@@ -1,0 +1,8 @@
+opencv-python
+pillow
+face_recognition
+mediapipe
+numpy
+tensorflow
+faker
+python-escpos

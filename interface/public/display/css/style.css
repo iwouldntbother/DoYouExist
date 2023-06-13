@@ -29,71 +29,83 @@ w {
 }
 
 #privacyBar {
-  width: 25em;
-  height: 4em;
+  width: 32em;
+  height: 5em;
   background-color: white;
   position: absolute;
-  top: 42.5em;
-  left: 5.75em;
+  top: 56.5em;
+  left: 8.8em;
   opacity: 0;
 }
 
 #square-0 {
-  width: 35em;
-  height: 35em;
-  top: 28em;
+  width: 46.7em;
+  height: 46.7em;
+  top: 38.75em;
   left: 0.75em;
   position: absolute;
   object-fit: contain;
   opacity: 0;
 }
 
+#printHolder {
+  width: 34.7em;
+  height: 46.7em;
+  position: absolute;
+  top: 38.75em;
+  right: 0.75em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fingerprint-img {
+  width: 17.35em;
+  height: 15.57em;
+  /* position: absolute; */
+  object-fit: cover;
+  opacity: 0;
+}
+
 #square-1-0 {
-  top: 63em;
-  left: 0.75em;
+  top: 38.75em;
+  right: 18em;
 }
 
 #square-1-1 {
-  top: 63em;
-  left: 9.5em;
+  top: 38.75em;
+  right: 0.75em;
 }
 
 #square-1-2 {
-  top: 63em;
-  left: 18.25em;
+  top: 54.6em;
+  right: 18em;
 }
 
 #square-1-3 {
-  top: 63em;
-  left: 27em;
+  top: 54.6em;
+  right: 0.75em;
 }
 
 #square-1-4 {
-  top: 71.75em;
-  left: 0.75em;
+  top: 69.45em;
+  right: 18em;
 }
 
 #square-1-5 {
-  top: 71.75em;
-  left: 9.5em;
+  top: 69.45em;
+  right: 0.75em;
 }
 
 #square-1-6 {
   top: 71.75em;
   left: 18.25em;
+  display: none;
 }
 
 #square-1-7 {
   top: 71.75em;
   left: 27em;
-}
-
-.fingerprint-img {
-  width: 8.75em;
-  height: 8.75em;
-  position: absolute;
-  object-fit: cover;
-  opacity: 0;
+  display: none;
 }
 
 #cmdInput {

@@ -1,3 +1,5 @@
+import personalData
+import uuid
 import sys
 import time
 import cv2
@@ -7,6 +9,7 @@ from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordi
 import faceRec
 import generateData
 
+
 isRunning = True
 
 mp_face_detection = mp.solutions.face_detection
@@ -15,7 +18,7 @@ mp_drawing = mp.solutions.drawing_utils
 faceVisible = False
 timeFaceLastVisible = time.time()
 timeFaceNotVisible = time.time()
-faceProcessWaitTime = 5
+faceProcessWaitTime = 2
 
 coolDownStart = time.time() + 30
 
@@ -33,6 +36,16 @@ def processFace(image, bbox):
 
 def detectFace(croppedImage):
     global coolDownStart
+
+    skipFaceRec = False
+
+    if skipFaceRec == True:
+        newUUID = str(uuid.uuid4())
+        personalData.createNewPerson(newUUID, [])
+        print('faceUUID: ' + newUUID)
+        sys.stdout.flush()
+        coolDownStart = time.time()
+        return
 
     existed, faceUUID, error = faceRec.faceRecogniser(croppedImage)
 
@@ -104,8 +117,8 @@ with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence
         if (time.time()-coolDownStart) >= 30:
             print('DetectFace.py: Detecting again', end='\r')
             detecting = True
-        else:
-            print('DetectFace.py: Cooling down', end='\r')
+        # else:
+        #     print('DetectFace.py: Cooling down', end='\r')
 
         if results.detections and detecting:
             for detection in results.detections:
@@ -135,7 +148,7 @@ with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence
                 else:
                     faceCapture(False)
 
-        cv2.imshow('Face Detection', image)
+        # cv2.imshow('Face Detection', image)
         if cv2.waitKey(1) == ord('q'):
             break
 cap.release()

@@ -32,12 +32,13 @@ currentDatabase = []
 def getDatabase():
     global currentDatabase
     with open(os.path.join(databaseDirectory, 'main_db.pkl'), 'rb') as f:
-        newCurrentDatabase = []
+        # newCurrentDatabase = []
         data = pickle.load(f)
+        currentDatabase = []
         for dataPoint in data:
-            newCurrentDatabase.append(dataPoint)
-        currentDatabase = newCurrentDatabase
-    return newCurrentDatabase
+            currentDatabase.append(dataPoint)
+        # currentDatabase = newCurrentDatabase
+    return currentDatabase
 
 
 def getEncodingsAndUUIDs():
@@ -62,6 +63,8 @@ def pilImageToBase64(image):
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
     img_str = base64.b64encode(buffered.getvalue())
+    buffered.close()
+    # image.close()
 
     return 'data:image/jpeg;base64,' + img_str.decode('utf-8')
 
@@ -73,6 +76,7 @@ def pltImageToBase64(image):
     plt.imshow(mat, cmap='gray')
     plt.savefig(buffered, format='jpg')
     buffered.seek(0)
+    plt.close()
 
     return 'data:image/jpeg;base64,' + base64.b64encode(buffered.read()).decode('utf-8')
 
@@ -82,12 +86,12 @@ def writeJSON():
     getDatabase()
     with open(os.path.join(databaseDirectory, 'json_db.json'), 'w') as f:
         dataToWrite = []
-        print(len(currentDatabase))
+        # print(len(currentDatabase))
         for item in currentDatabase:
-            print(type(item.face_image))
+            # print(type(item.face_image))
             jsonReady = {
                 "uuid": str(item.uuid),
-                "faceEncodings": item.faceEncodings.tolist(),
+                # "faceEncodings": item.faceEncodings.tolist(),
                 "name": item.name,
                 "phone_number": item.phone_number,
                 "occupation": item.occupation,

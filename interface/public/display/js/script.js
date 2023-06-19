@@ -50,58 +50,58 @@ const displayData = (info) => {
   } ${info.name
     .split(' ')[1]
     .slice(0, 1)
-    .padEnd(info.name.split(' ')[1].length, '█')}`.padEnd(36);
+    .padEnd(info.name.split(' ')[1].length, '█')}`.padEnd(39);
   document.querySelector('#phone').innerHTML = `${info.phone_number.slice(
     0,
     2
   )}${''.padEnd(info.phone_number.length - 4, '█')}${info.phone_number.slice(
     -2
-  )}`.padEnd(26);
+  )}`.padEnd(29);
   document.querySelector('#uuid').innerHTML = `${info.uuid
     .split('-')[0]
     .slice(0, 4)}████-████-████-████-████████${info.uuid
     .split('-')[4]
-    .slice(-4)}`.padEnd(36);
+    .slice(-4)}`.padEnd(39);
   document.querySelector('#dob').innerHTML = (
     info.date_of_birth.slice(0, 6) + '████'
-  ).padEnd(26);
-  document.querySelector('#bankOne').innerHTML = info.bank_card[0].padEnd(36);
+  ).padEnd(29);
+  document.querySelector('#bankOne').innerHTML = info.bank_card[0].padEnd(39);
   document.querySelector('#bankTwo').innerHTML = info.bank_card[2]
     .split(' ')[0]
     .slice(-4)
     .padStart(info.bank_card[2].length, '█')
-    .padEnd(36);
+    .padEnd(39);
   document.querySelector('#bankThree').innerHTML = (
     info.bank_card[2].split(' ')[1] + ' CVC: ███'
-  ).padEnd(36);
+  ).padEnd(39);
   document.querySelector('#addOne').innerHTML = info.address
     .split('|')[0]
     .split(' ')[0]
     .padEnd(info.address.split('|')[0].length, '█')
-    .padEnd(26);
+    .padEnd(29);
   document.querySelector('#addTwo').innerHTML = info.address
     .split('|')[1]
     .slice(0, 1)
     .padEnd(info.address.split('|')[1].length, '█')
-    .padEnd(26);
+    .padEnd(29);
   document.querySelector('#addThree').innerHTML = (
     info.address.split('|')[2].split(' ')[0] + ' ███'
-  ).padEnd(26);
+  ).padEnd(29);
   document.querySelector('#locOne').innerHTML = DD2DMS(
     info.last_location[0],
     info.last_location[1]
-  ).padEnd(65);
+  ).padEnd(71);
   document.querySelector('#locTwo').innerHTML = (
     info.last_location[2]
       .slice(0, 1)
       .padEnd(info.last_location[2].length, '█') +
     ', ' +
     info.last_location[3]
-  ).padEnd(65);
+  ).padEnd(71);
   document.querySelector('#locThree').innerHTML = info.last_location[4]
     .slice(0, 1)
     .padEnd(info.last_location[4].length, '█')
-    .padEnd(65);
+    .padEnd(71);
 
   // Photo
   document.querySelector('#square-0').setAttribute('src', info.face_image);
@@ -143,8 +143,14 @@ const displayData = (info) => {
   document.getElementById('privacyBar').style.opacity = 1;
 };
 
-displayData(tempData[0]);
+// displayData(tempData[0]);
 // displayData()
+
+const displayTextaArea = document.querySelector('#displayTextArea');
+displayTextaArea.innerHTML = '';
+for (let i = 0; i < displayPage.length; i++) {
+  displayTextaArea.innerHTML += blankDisplayPage[i] + '<br>';
+}
 
 socket.on('profileData', (data) => {
   displayData(JSON.parse(data));

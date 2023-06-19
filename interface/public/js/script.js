@@ -31,6 +31,19 @@ const DD2DMS = (lat, lng) => {
   }″ ${lng_dir}`;
 };
 
+let timeoutCounter;
+
+const startTimeoutCounter = () => {
+  timeoutCounter = setTimeout(() => {
+    socket.emit('stopDetect');
+    window.location.reload(true);
+  }, 60000);
+};
+
+const stopTimeoutCounter = () => {
+  clearTimeout(timeoutCounter);
+};
+
 let currentPage = '';
 
 const loadInfo = (info) => {
@@ -141,6 +154,7 @@ const loadPage = (pageName, info) => {
       document.querySelector('#square-0').style.display = 'block';
       document.querySelector('#square-1').style.display = 'flex';
       loadButtons(pageName);
+      stopTimeoutCounter();
       break;
 
     case 'welcome':
@@ -154,6 +168,16 @@ const loadPage = (pageName, info) => {
       break;
 
     case 'check':
+      for (let i = 0; i < pages[pageName].length; i++) {
+        document.querySelector('#mainTextArea').innerHTML +=
+          pages[pageName][i] + '<br>';
+      }
+      document.querySelector('#square-0').style.display = 'none';
+      document.querySelector('#square-1').style.display = 'none';
+      startTimeoutCounter();
+      break;
+
+    case 'printing':
       for (let i = 0; i < pages[pageName].length; i++) {
         document.querySelector('#mainTextArea').innerHTML +=
           pages[pageName][i] + '<br>';
@@ -311,6 +335,7 @@ const startDetecting = () => {
 };
 
 const printProfile = (jsonStringData) => {
+  loadPage('printing');
   socket.emit('print', jsonStringData);
 };
 

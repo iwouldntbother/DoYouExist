@@ -5,4 +5,4 @@ mediapipe
 numpy
 tensorflow
 faker
-python-escpos
+python-escpos==3.0a9

@@ -33,6 +33,11 @@ const startDetectingScript = (socket) => {
       detectionFinished(socket, uuid);
     }
   });
+
+  socket.on('stopDetect', () => {
+    console.log('Detection timed out, stopping');
+    child.kill('SIGINT');
+  });
 };
 
 const startDetectLoop = async (socket) => {
@@ -73,7 +78,7 @@ const printProfileData = (socket, jsonStringData) => {
 };
 
 io.on('connection', (socket) => {
-  console.log('User connected');
+  // console.log('User connected');
 
   socket.on('start', () => {
     startDetectLoop(socket);
@@ -85,9 +90,9 @@ io.on('connection', (socket) => {
 
   // socket.emit('thankyou');
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
+  // socket.on('disconnect', () => {
+  //   console.log('User disconnected');
+  // });
 });
 
 app.use(bodyParser.json());
